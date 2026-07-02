@@ -1,0 +1,3 @@
+app pw.txt
+__pycache__/
+*.pyc
