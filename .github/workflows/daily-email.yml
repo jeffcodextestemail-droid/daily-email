@@ -1,4 +1,4 @@
-name: Daily Email
+name: Daily Email Workflow
 
 on:
   schedule:
