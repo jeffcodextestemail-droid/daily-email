@@ -1,0 +1,29 @@
+name: Daily Email
+
+on:
+  schedule:
+    - cron: "15 16 * * *"
+  workflow_dispatch:
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Send daily email
+        env:
+          DAILY_EMAIL_SENDER: ${{ secrets.DAILY_EMAIL_SENDER }}
+          DAILY_EMAIL_RECIPIENT: ${{ secrets.DAILY_EMAIL_RECIPIENT }}
+          DAILY_EMAIL_SMTP_SERVER: smtp.gmail.com
+          DAILY_EMAIL_SMTP_PORT: "587"
+          DAILY_EMAIL_PASSWORD: ${{ secrets.DAILY_EMAIL_PASSWORD }}
+          DAILY_EMAIL_SEND: "true"
+        run: python daily_email.py
