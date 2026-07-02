@@ -2,7 +2,7 @@ name: Daily Email
 
 on:
   schedule:
-    - cron: "15 16 * * *"
+    - cron: "00 12 * * *"
   workflow_dispatch:
 
 jobs:
