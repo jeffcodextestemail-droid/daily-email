@@ -1,9 +1,6 @@
 name: Daily Email Workflow
 
 on:
-  schedule:
-    - cron: "30 7 * * *"
-      timezone: "America/Los_Angeles"
   workflow_dispatch:
 
 jobs:
