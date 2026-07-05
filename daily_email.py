@@ -1,7 +1,11 @@
 import os
 import smtplib
-from datetime import date
+from datetime import datetime
 from email.message import EmailMessage
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def get_email_settings():
@@ -34,12 +38,12 @@ def find_missing_settings(settings):
 
 
 def build_email_message(settings):
-    today = date.today().strftime("%B %d, %Y")
+    timestamp = datetime.now().strftime("%B %d, %Y %I:%M:%S %p")
 
     message = EmailMessage()
     message["From"] = settings["sender"]
     message["To"] = settings["recipient"]
-    message["Subject"] = f"Daily email for {today}"
+    message["Subject"] = f"Daily email for {timestamp}"
     message.set_content("Hello! This is your daily email.")
 
     return message
